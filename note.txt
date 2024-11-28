@@ -1,0 +1,30 @@
+Starting Laravel Project
+
+-Create github repo
+-create laraval project in htdocs
+    -composer create-project laravel-laravel project-name
+-local laravel project link to github repo
+    -git initialize
+    -git remote origin(clone url)
+    -git status
+    -git add .
+    -git commit -m "startin project"
+    -git push -u origin main or master(for my macbook is master)
+-Install laravel ui
+    -composer require laravel/ui
+-Install ui bootstrap
+    -php artisan ui booth --auth
+-npm Install
+-npm run build
+
+
+
+
+
+
+
+
+
+
+
+
