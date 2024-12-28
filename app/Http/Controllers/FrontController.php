@@ -21,9 +21,12 @@ class FrontController extends Controller
     }
     public function shopItem($id)
     {
+        //echo $id;
         $item = Item::find($id);
-        //var_dump($item);sss
-        return view('front.shop-item',compact('item'));
+        $category_id = $item->category_id;
+        $related_items = Item::where('category_id',$category_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
+        //$feature_post = Item::where('category_id',$category_id)->orderBy('id','DESC')->limit(1)first();
+        return view('front.shop-item',compact('item','related_items'));
     }
 
     public function carts() {
@@ -48,16 +51,21 @@ class FrontController extends Controller
         foreach($dataArray as $data) {
             $order = new Order();
             $order->voucher_no = $voucher_no;
-            $order->total = $data->qty*($data->price ($data->price*($data->discount/100)));
+            $order->total = $data->qty*($data->price-($data->price*($data->discount/100)));
             $order->qty = $data->qty;
             $order->payment_slip = '/images/payment-slip/'.$file_name;
             $order->status = 'Pending';
-            $order->note = $request->note;
+            $order->address = $request->address;
             $order->item_id = $data->id;
             $order->payment_id = $request->payment_method;
             $order->user_id = Auth::id();
             $order->save();
         }
         return 'Your Order Successful';
+    }
+
+    public function itemCategory($category_id){
+        $items  = Item::where('category_id',$category_id)->orderBy('id','DESC')->paginate(8);
+        return view('front.item-category',compact('items'));
     }
 }

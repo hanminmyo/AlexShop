@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Item;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        category::factory(10)->create();
-        Item::factory(20)->create();
+        // category::factory(10)->create();
+        // Item::factory(20)->create();
+        
+        User::create([
+
+            'name' => 'Super Admin',
+            'phone' => '0987654321',
+            'profile' => '/images/profiles/sa.png',
+            'email' => 'superadmin@gmail.com',
+            'password' => Hash::make('123456789'),
+            'role' => 'Super Admin',
+        ]);
+
     }
 }

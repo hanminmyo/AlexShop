@@ -29,7 +29,7 @@ $(document).ready(function(){
             data += `<tr>
                 <td colspan="6">Total</td>
                 <td>${total} MMK</td>
-            </tr>`;
+                    </tr>`;
             $('#tbody').html(data);
         }
     }

@@ -43,10 +43,10 @@
                         </select>
                     </div>
                     <div class="col-md-12">
-                        <label for="note">Note</label>
-                        <textarea name="note" id="" class="form-control"></textarea>
+                        <label for="address">Address</label>
+                        <textarea name="address" id="" class="form-control"></textarea>
                     </div>
-                    <button class="btn btn-success my-3" id="order-now" type="button">Order Now</button>
+                    <button class="btn btn-success my-3" id="order-now" type="submit">Order Now</button>
             </form>
             @endif
         </div>
@@ -70,7 +70,7 @@
                 // })
             // })
 
-            $('#payment Form').on('submit',function(e){
+            $('#paymentForm').on('submit',function(e){
                 e.preventDefault();
                 var formData = new FormData(this);
                 console.log(formData);
@@ -88,6 +88,8 @@
                         console.log(response);
                         if (response) {
                             alert('Order Successful');
+                            localStorage.clear('shops');
+                            location.href = '/';
                         }
                     }
                 })    
